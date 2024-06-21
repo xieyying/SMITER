@@ -7,9 +7,7 @@ __version__ = "0.1.0"
 import os
 import sys
 import tempfile
-
 from loguru import logger
-
 import smiter.synthetic_mzml
 
 config = {

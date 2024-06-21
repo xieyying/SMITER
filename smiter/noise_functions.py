@@ -124,20 +124,17 @@ class GaussNoiseInjector(AbstractNoiseInjector):
         return noise
 
     def _generate_intensity_noise(self, scan, *args, **kwargs):
-        """Generate intensity noise.
-
-        Args:
-            scan (Scan): Scan object
-            *args: Description
-            **kwargs: Description
-        """
-        noise = np.random.normal(
-            # np.array(np.zeros(len(scan.i))),
-            np.array(scan.i),
-            np.array(scan.i) * kwargs.get("variance", 0.02),
-            len(scan.i),
-        )
-        return noise - scan.i
+            """
+            计算模拟强度
+            :param scan: Scan object
+            :param sigma_IR: 相对噪声的标准差
+            :param sigma_IA: 绝对噪声的标准差
+            :return: 模拟强度
+            """
+            I_exact = np.array(scan.i)
+            relative_noise = np.random.normal(1, kwargs.get('sigma_IR',0.05), len(I_exact))
+            absolute_noise = np.random.normal(0, kwargs.get('sigma_IA',0.005), len(I_exact))
+            return I_exact * relative_noise + absolute_noise
 
 
 class UniformNoiseInjector(AbstractNoiseInjector):
