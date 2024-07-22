@@ -5,6 +5,8 @@ from pprint import pprint
 import matplotlib.pyplot as plt
 import pyteomics.mzml as mzml
 import smiter
+print(smiter.__version__)
+print(smiter.__file__)
 from smiter import synthetic_metabolite_mzml
 import warnings
 warnings.simplefilter("ignore")
@@ -24,7 +26,7 @@ def main(input_csv, output_mzml):
     #     dropout=0.0, ppm_noise=0, intensity_noise=0) # dropout只在ms2中生效
     
     # mzml_params
-    mzml_params = {"gradient_length": 400,"ms_rt_diff": 0.3,"max_intensity":0.97e7}
+    mzml_params = {"gradient_length": 150,"ms_rt_diff": 0.3,"max_intensity":1e6}
     synthetic_metabolite_mzml.write_mzml(
         output_mzml, peak_properties, fragmentor, noise_injector, mzml_params
     )
@@ -41,7 +43,7 @@ def main(input_csv, output_mzml):
 
 if __name__ == "__main__":
     input_csv = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\test_molecules1448.csv'
-    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\test_molecules1448.mzML'
+    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\test_molecules1448_4.mzML'
     main(input_csv, output_mzml)
  
 

@@ -630,6 +630,25 @@ def write_scans(
     with MzMLWriter(file) as writer:
         # Add default controlled vocabularies
         writer.controlled_vocabularies()
+        writer.file_description()
+        writer.software_list([
+        writer.Software(version="0.0.0", id='psims', params=['custom unreleased software tool']),
+        writer.Software(version="3.0.24052", id='pwiz', params=['ProteoWizard software'])
+        ])
+        writer.instrument_configuration_list([
+            writer.InstrumentConfiguration(id="IC1", component_list=writer.ComponentList([
+                writer.Source(params=['electrospray ionization'], order=1),
+                writer.Analyzer(params=['quadrupole'], order=2),
+                writer.Analyzer(params=['orbitrap'], order=3),
+                writer.Detector(params=['inductive detector'], order=4)
+            ])),
+    
+        ])
+        writer.data_processing_list([
+            writer.DataProcessing(processing_methods=[
+                dict(order=0, software_reference='psims', params=['Conversion to mzML']),
+            ], id=1)
+        ])
         writer.format()
         # Open the run and spectrum list sections
         time_array = []
