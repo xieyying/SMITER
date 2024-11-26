@@ -42,8 +42,9 @@ def main(input_csv, output_mzml):
     plt.show()
 
 if __name__ == "__main__":
-    input_csv = 'test_data_for_smiter.csv'
-    output_mzml = '1ppm_2e4.mzML'
+
+    input_csv = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\High_molecular_weight\high_mw_for_smiter.csv'
+    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\High_molecular_weight\1ppm_2e4.mzML'
     main(input_csv, output_mzml)
  
 
