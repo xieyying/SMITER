@@ -30,10 +30,11 @@ SMITER (Synthetic mzML writer) is a python-based command-line tool designed to s
 Features
 --------
 
-* simulate mass spectrometry data for any biomolecule
-* usage of highly-accurate isotopic patterns enabled by `pyQms`_
+* simulate mass spectrometry data for molecular formula
+* usage of highly-accurate isotopic patterns from molmass for the simulation of isotopic patterns
 * feature scaling by gauss-, gamma- and exponentially-modified gaussian distributions
 * m/z-and intensity noise injection ( uniform noise or a noise model that combines general noise with intensity-specific noise)
+* Generate mzML files that can be read by OpenMS, MZmine3, and ProteoWizard
 * MS2 fragmentation for peptides and modified nucleosides.
 * Free software: MIT license
 * Documentation: https://smiter.readthedocs.io.
@@ -41,15 +42,10 @@ Features
 .. _pyQms:
 	https://github.com/pyQms/pyqms
 
-Major Changes in Version 0.2.0
-* Calculated isotopic patterns using molmass.
-* Modified `write_spectrum` to generate mzML files compatible with OpenMS, ProteoWizard, and MZmine3.
-* Added random noise to MS spectra and calculated intensity-weighted average m/z values to simulate real LC-MS/MS data.
-
 Download and Installation
 -------------------------
 
-SMITER_MODIFIED requires `Python`_ 3.7 or higher.
+SMITER requires `Python`_ 3.7 or higher.
 
 
 There are two recommended ways for installing SMITER_MODIFIED
@@ -117,7 +113,7 @@ Contact
 Citation
 --------
 
-Please do not forget to cite SMITER:
+Please do not forget to cite SMITER_MODIFIED:
 
 <ref>
 

@@ -1,0 +1,22 @@
+=======
+History
+=======
+
+0.2.0 (2024-06-26)
+------------------
+
+* Added data processing method to spectrum list
+* Unified intensity and mz to 5 decimal places, rt to 4 decimal places
+* Added scan parameters and scan window list to MS1 and MS2 write_spectrum
+* Removed redundant scan start time comments from MS1 and MS2 write_spectrum
+* Added compression="none" to write_chromatogram
+* Added data_processing_method to chromatogram_list
+* Replaced pyqms.IsotopologueLibrary with molmass for isotope peak calculation
+* Commented out secondary mass spectrometry analysis
+* Replaced CSV handling with pandas in li.py module
+* Added functions for adding noise and calculating weighted averages in synthetic_metabolite_mzml.py
+
+0.1.0 (2020-03-16)
+------------------
+
+* First release on PyPI.

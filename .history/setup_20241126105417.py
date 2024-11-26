@@ -25,8 +25,8 @@ test_requirements = [
 setup(
     author="Manuel Kösters",
     author_email="manuel.koesters@dcb.unibe.ch",
-    maintainer="Yunying Xie",
-    maintainer_email="xieyy@imb.pumc.edu.cn",
+    maintainer="Your Name",
+    maintainer_email="your.email@example.com",
     python_requires=">=3.7",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
@@ -40,20 +40,20 @@ setup(
     description="Library to create synthetic mzMLs file based on chemical formulas",
     entry_points={
         "console_scripts": [
-            "SMITER_modified=smiter.cli:main",
+            "smiter_modified=smiter.cli:main",
         ],
     },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + "\n\n" + history,
     include_package_data=True,
-    keywords="SMITER_modified",
-    name="SMITER_modified",
+    keywords="smiter_modified",
+    name="smiter_modified",
     packages=find_packages(include=["smiter", "smiter.*"]),
     setup_requires=setup_requirements,
     test_suite="tests",
     tests_require=test_requirements,
-    url="https://github.com/yourusername/SMITER_modified",
+    url="https://github.com/yourusername/smiter_modified",
     version="0.2.0",
     zip_safe=False,
 )

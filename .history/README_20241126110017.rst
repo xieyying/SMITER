@@ -41,15 +41,10 @@ Features
 .. _pyQms:
 	https://github.com/pyQms/pyqms
 
-Major Changes in Version 0.2.0
-* Calculated isotopic patterns using molmass.
-* Modified `write_spectrum` to generate mzML files compatible with OpenMS, ProteoWizard, and MZmine3.
-* Added random noise to MS spectra and calculated intensity-weighted average m/z values to simulate real LC-MS/MS data.
-
 Download and Installation
 -------------------------
 
-SMITER_MODIFIED requires `Python`_ 3.7 or higher.
+SMITER requires `Python`_ 3.7 or higher.
 
 
 There are two recommended ways for installing SMITER_MODIFIED
@@ -61,23 +56,23 @@ Installation from source
 
 Clone the GitHub repo `GitHub`_::
 
-   user@localhost:~$ git clone https://github.com/xieyying/SMITER_MODIFIED.git
+   user@localhost:~$ git clone https://github.com/xieyy/SMITER_MODIFIED.git
 
 
 .. _GitHub:
-   https://github.com/xieyying/SMITER_MODIFIED.git
+   https://github.com/xieyy/SMITER_MODIFIED.git
 
 
 Install the requirements and SMITER::
 
-    user@localhost:~$ cd smiter_modified
-    user@localhost:~/smiter_modified$ pip install -r requirements.txt
-    user@localhost:~/smiter_modified$ python setup.py install
+    user@localhost:~$ cd smiter
+    user@localhost:~/smiter$ pip install -r requirements.txt
+    user@localhost:~/smiter$ python setup.py install
 
 
 .. note::
 
-	We recommend using an virtual environment when using smiter_modified
+	We recommend using an virtual environment when using SMITER
 
 
 
@@ -86,7 +81,7 @@ Testing
 
 To test the package and correct installation::
 
-    user@localhost:~/smiter_modified$ tox
+    user@localhost:~/smiter$ tox
 
 Copyrights
 ----------
@@ -98,10 +93,6 @@ Copyright 2020-2021 by authors and contributors
 * Johannes Leufken
 * Sebastian Leidel
 
-Maintained by
--------------
-
-* Yunying Xie
 
 Contact
 -------
