@@ -28,9 +28,9 @@ def main(input_csv, output_mzml):
     # mzml_params
     mzml_params = {"gradient_length": 900,"ms_rt_diff": 0.3,"max_intensity":1e6}
     synthetic_metabolite_mzml.write_mzml(
-        output_mzml, peak_properties, fragmentor, noise_injector, mzml_params,resolution=10000
+        output_mzml, peak_properties, fragmentor, noise_injector, mzml_params
     )
-    print(f"mzml file saved to {output_mzml}")
+
     # plot the total ion chromatogram
     rt = []
     i  = []
@@ -42,8 +42,8 @@ def main(input_csv, output_mzml):
     plt.show()
 
 if __name__ == "__main__":
-    input_csv = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\LC_MS_information_from_papers\1800_molecules_for_smiter.csv'
-    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\LC_MS_information_from_papers\simulated_mzml\1ppm_1e4.mzML'
+    input_csv = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\High_molecular_weight\high_mw_for_smiter.csv'
+    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\LC_MS_information_from_papers\simulated_mzml\1ppm_2e4.mzML'
     main(input_csv, output_mzml)
  
 

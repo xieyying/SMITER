@@ -30,7 +30,7 @@ def main(input_csv, output_mzml):
     synthetic_metabolite_mzml.write_mzml(
         output_mzml, peak_properties, fragmentor, noise_injector, mzml_params,resolution=10000
     )
-    print(f"mzml file saved to {output_mzml}")
+
     # plot the total ion chromatogram
     rt = []
     i  = []

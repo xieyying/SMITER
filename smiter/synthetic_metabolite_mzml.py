@@ -49,13 +49,12 @@ def weighted_average(mz_values, intensities):
     """
     return sum(mz * intensity for mz, intensity in zip(mz_values, intensities)) / sum(intensities), sum(intensities)
 
-def calculate_averages(mz_values, intensities):
+def calculate_averages(mz_values, intensities, resolution=20000):
     averaged_mz_values = []
     averaged_intensities = []
     i = 0
-
     while i < len(mz_values) - 1:
-        if abs((mz_values[i+1] - mz_values[i]) / mz_values[i]) < 1/20000: #TODO: Pass 20000 as resolution parameter
+        if abs((mz_values[i+1] - mz_values[i]) / mz_values[i]) < 1/resolution: #TODO: Pass 20000 as resolution parameter
             averaged_mz_values.append(weighted_average([mz_values[i], mz_values[i+1]], [intensities[i], intensities[i+1]])[0])
             averaged_intensities.append(weighted_average([mz_values[i], mz_values[i+1]], [intensities[i], intensities[i+1]])[1])
             i += 2  # Skip the next value as it has been averaged
@@ -169,6 +168,7 @@ def write_mzml(
     fragmentor: AbstractFragmentor,
     noise_injector: AbstractNoiseInjector,
     mzml_params: Dict[str, Union[int, float, str]],
+    resolution: int = 20000,
 ) -> str:
     """Write mzML file with chromatographic peaks and fragment spectra for the given molecules.
 
@@ -180,6 +180,8 @@ def write_mzml(
     """
     # check params and raise Exception(s) if necessary
     logger.info("Start generating mzML")
+    print('noise params:', noise_injector.args, noise_injector.kwargs)
+    print('resolution:', resolution)
     mzml_params = check_mzml_params(mzml_params)
     peak_properties = check_peak_properties(peak_properties)
 
@@ -211,7 +213,7 @@ def write_mzml(
     )
     logger.info("Delete interval tree")
     del interval_tree
-    write_scans(file, scans)
+    write_scans(file, scans, resolution) 
     if not isinstance(file, str):
         file_path = file.name
     else:
@@ -605,7 +607,7 @@ def generate_molecule_isotopologue_lib(
 
 # @profile
 def write_scans(
-    file: Union[str, io.TextIOWrapper], scans: List[Tuple[Scan, List[Scan]]]
+    file: Union[str, io.TextIOWrapper], scans: List[Tuple[Scan, List[Scan]],], resolution: int
 ) -> None:
     """Generate given scans to mzML file.
 
@@ -663,7 +665,7 @@ def write_scans(
                     indices = np.argsort(scan.mz)
                     scan.mz = scan.mz[indices]
                     scan.i = scan.i[indices]
-                    mz,i = calculate_averages(scan.mz, scan.i)
+                    mz,i = calculate_averages(scan.mz, scan.i, resolution)
                     try:
                         index_of_max_i = np.argmax(i)
                         max_i = i[index_of_max_i]

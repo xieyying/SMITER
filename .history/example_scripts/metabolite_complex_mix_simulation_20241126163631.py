@@ -28,7 +28,7 @@ def main(input_csv, output_mzml):
     # mzml_params
     mzml_params = {"gradient_length": 900,"ms_rt_diff": 0.3,"max_intensity":1e6}
     synthetic_metabolite_mzml.write_mzml(
-        output_mzml, peak_properties, fragmentor, noise_injector, mzml_params,resolution=10000
+        output_mzml, peak_properties, fragmentor, noise_injector, mzml_params,resolution=40000
     )
     print(f"mzml file saved to {output_mzml}")
     # plot the total ion chromatogram
