@@ -27,12 +27,12 @@ from smiter.peak_distribution import distributions
 
 warnings.filterwarnings("ignore")
 
-def adding_noise_for_each_scan(scan,noise_intensity=200, noise_length=1500): # TODO: noise_intensity, noise_length 作为参数传入
+def adding_noise_for_each_scan(scan, noise_intensity=200, noise_length=1500): # TODO: Pass noise_intensity, noise_length as parameters
     """
-    为每个scan添加噪声
-    :param scan: 扫描
-    :param noise_intensity: 噪声注入器,noise_length:噪声长度
-    :return: 添加噪声后的scan
+    Add random noise to each scan
+    :param scan: Scan
+    :param noise_intensity: Noise injector, noise_length: Noise length
+    :return: Scan with added noise
     """
     noise_i = np.random.uniform(0, noise_intensity, noise_length)
     noise_mz = np.random.uniform(50, 1500, noise_length)
@@ -42,10 +42,10 @@ def adding_noise_for_each_scan(scan,noise_intensity=200, noise_length=1500): # T
 
 def weighted_average(mz_values, intensities):
     """
-    计算加权平均值
-    :param mz_values: 质荷比列表
-    :param intensities: 强度列表
-    :return: 加权平均值
+    Calculate weighted average
+    :param mz_values: List of m/z values
+    :param intensities: List of intensities
+    :return: Weighted average
     """
     return sum(mz * intensity for mz, intensity in zip(mz_values, intensities)) / sum(intensities), sum(intensities)
 
@@ -55,16 +55,16 @@ def calculate_averages(mz_values, intensities):
     i = 0
 
     while i < len(mz_values) - 1:
-        if abs((mz_values[i+1] - mz_values[i]) / mz_values[i]) < 1/20000: #TODO: 20000为分辨率，作为参数传入
+        if abs((mz_values[i+1] - mz_values[i]) / mz_values[i]) < 1/20000: #TODO: Pass 20000 as resolution parameter
             averaged_mz_values.append(weighted_average([mz_values[i], mz_values[i+1]], [intensities[i], intensities[i+1]])[0])
             averaged_intensities.append(weighted_average([mz_values[i], mz_values[i+1]], [intensities[i], intensities[i+1]])[1])
-            i += 2  # 跳过下一个值，因为已经计算了加权平均值
+            i += 2  # Skip the next value as it has been averaged
         else:
             averaged_mz_values.append(mz_values[i])
             averaged_intensities.append(intensities[i]) 
             i += 1
 
-    # 如果最后一个值没有被计算加权平均值，将其添加到结果列表中
+    # If the last value has not been averaged, add it to the result list
     if i == len(mz_values) - 1:
         averaged_mz_values.append(mz_values[i])
         averaged_intensities.append(intensities[i])

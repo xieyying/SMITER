@@ -23,10 +23,10 @@ def main(input_csv, output_mzml):
         dropout=0.0, ppm_var=1)
    
     # noise_injector = smiter.noise_functions.UniformNoiseInjector(
-    #     dropout=0.0, ppm_noise=0, intensity_noise=0) # dropout只在ms2中生效
+    #     dropout=0.0, ppm_noise=0, intensity_noise=0) # dropout only work in processing ms2
     
     # mzml_params
-    mzml_params = {"gradient_length": 150,"ms_rt_diff": 0.3,"max_intensity":1e6}
+    mzml_params = {"gradient_length": 900,"ms_rt_diff": 0.3,"max_intensity":1e6}
     synthetic_metabolite_mzml.write_mzml(
         output_mzml, peak_properties, fragmentor, noise_injector, mzml_params
     )
@@ -42,8 +42,8 @@ def main(input_csv, output_mzml):
     plt.show()
 
 if __name__ == "__main__":
-    input_csv = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\test_molecules1448.csv'
-    output_mzml = r'D:\workissues\manuscript\halo_mining\HaloAnalyzer\Simulated_LC_MS\test_molecules1448_4.mzML'
+    input_csv = 'test_data_for_smiter.csv'
+    output_mzml = '1ppm_2e4.mzML'
     main(input_csv, output_mzml)
  
 
